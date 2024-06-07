@@ -233,7 +233,7 @@ public class Catalogo {
                 int annoPubblicazione = Integer.parseInt(scanner.nextLine());
                 elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione);
                 System.out.println();
-                if (elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione) == null) {
+                if (elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione) == null || elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione).isEmpty()) {
                     System.out.println("Elementi non trovati");
                 } else {
                     elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione).forEach(System.out::println);
@@ -245,7 +245,7 @@ public class Catalogo {
                 String autore = scanner.nextLine();
                 libroDAO.cercaLibriPerAutore(autore);
                 System.out.println();
-                if (libroDAO.cercaLibriPerAutore(autore) == null) {
+                if (libroDAO.cercaLibriPerAutore(autore) == null || libroDAO.cercaLibriPerAutore(autore).isEmpty()) {
                     System.out.println("Libri non trovati");
                 } else {
                     libroDAO.cercaLibriPerAutore(autore).forEach(System.out::println);
@@ -261,7 +261,7 @@ public class Catalogo {
         System.out.println("Inserisci il numero tessera dell'utente per visualizzare i suoi prestiti attivi");
         String numeroTessera = scanner.nextLine();
         utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera);
-        if (utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera) == null) {
+        if (utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera) == null || utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera).isEmpty()) {
             System.out.println();
             System.out.println("Nessun elemento in prestito");
             System.out.println();
