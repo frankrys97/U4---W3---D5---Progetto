@@ -37,6 +37,14 @@ public class UtenteDAO {
         return utenteTrovato;
     }
 
+    public List<Utente> trovaTuttiGliUtenti() {
+        EntityManager em = emf.createEntityManager();
+        List<Utente> utentiTrovati = em.createQuery("SELECT u FROM Utente u", Utente.class)
+                .getResultList();
+        em.close();
+        return utentiTrovati;
+    }
+
     public List<ElementoCatalogo> cercaElementiAttualmenteInPrestitoByNumeroTessera(String numeroTessera) {
         EntityManager em = emf.createEntityManager();
         List<ElementoCatalogo> elementiTrovati = em.createQuery("SELECT p.elementoPrestato FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera AND p.dataRestituzioneEffettiva IS NULL", ElementoCatalogo.class)

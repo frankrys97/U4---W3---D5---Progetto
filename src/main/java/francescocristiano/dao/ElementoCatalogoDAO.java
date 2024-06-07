@@ -26,11 +26,22 @@ public class ElementoCatalogoDAO {
         System.out.println("Elemento aggiunto con successo!");
     }
 
+    public List<ElementoCatalogo> trovaTuttiGliElementi() {
+        EntityManager em = emf.createEntityManager();
+        List<ElementoCatalogo> elementiTrovati = em.createQuery("SELECT e FROM ElementoCatalogo e", ElementoCatalogo.class)
+                .getResultList();
+        em.close();
+        return elementiTrovati;
+    }
+
     public void rimuoviElementoCatalogoByISBN(String ISBN) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         ElementoCatalogo elementoTrovato = em.find(ElementoCatalogo.class, ISBN);
+        if (elementoTrovato == null) {
+            throw new NotFoundException(ISBN);
+        }
         em.remove(elementoTrovato);
         transaction.commit();
         em.close();
@@ -47,6 +58,7 @@ public class ElementoCatalogoDAO {
         em.close();
         return elementoTrovato;
     }
+
 
     public List<ElementoCatalogo> cercaElementiPerAnnoPubblicazione(int annoPubblicazione) {
         EntityManager em = emf.createEntityManager();

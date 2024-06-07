@@ -4,6 +4,7 @@ package francescocristiano.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
@@ -35,6 +36,18 @@ public class Prestito {
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
+        this.dataRestituzioneEffettiva = generaDataRestituzioneEffettiva();
+
+    }
+
+    public LocalDate generaDataRestituzioneEffettiva() {
+        Random random = new Random();
+        if (random.nextBoolean()) {
+            int giorniAggiuntivi = random.nextInt(365 * 5);
+            return this.dataInizioPrestito.plusDays(giorniAggiuntivi + 1);
+        } else {
+            return null;
+        }
     }
 
     public Utente getUtente() {

@@ -5,25 +5,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.function.Supplier;
 
 @Entity
 public class Utente {
 
+    public static Supplier<Utente> randomicUser = () -> {
+        Faker faker = new Faker();
+        String nome = faker.name().firstName();
+        String cognome = faker.name().lastName();
+        Date dataDiNascita = faker.date().birthday();
+        return new Utente(nome, cognome, dataDiNascita);
+    };
     @Id
     private String numeroTessera;
     private String nome;
     private String cognome;
-    private LocalDate dataDiNascita;
-
+    private Date dataDiNascita;
     @OneToMany(mappedBy = "utente")
     private List<Prestito> prestiti;
 
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, LocalDate dataDiNascita) {
+    public Utente(String nome, String cognome, Date dataDiNascita) {
         this.numeroTessera = createTessera(); // Ho preferito optare per questo per non far generare tutto
         // al database e provare con metodi diversi
         this.nome = nome;
@@ -57,11 +64,11 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public LocalDate getDataDiNascita() {
+    public Date getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(LocalDate dataDiNascita) {
+    public void setDataDiNascita(Date dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 }
