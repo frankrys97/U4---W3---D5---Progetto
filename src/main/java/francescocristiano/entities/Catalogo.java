@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Catalogo {
 
@@ -30,6 +31,16 @@ public class Catalogo {
         prestitoDAO = new PrestitoDAO(emf);
         libroDAO = new LibroDAO(emf);
         utenteDAO = new UtenteDAO(emf);
+    }
+
+    public static LocalDate generateRandomDate() {
+        // Con questa funzione genero una data casuale tra il 1 gennaio 1900 e la data di oggi
+        long minDay = LocalDate.of(1900, 1, 1).toEpochDay();
+        long maxDay = LocalDate.now().toEpochDay();
+        long randomDay = minDay + ThreadLocalRandom.current().nextLong(maxDay - minDay);
+
+        // alla fine converto il numero casuale di giorni in una data
+        return LocalDate.ofEpochDay(randomDay);
     }
 
     public void startApp() {
@@ -99,7 +110,7 @@ public class Catalogo {
         List<Utente> utenti = utenteDAO.trovaTuttiGliUtenti();
         List<ElementoCatalogo> elementi = elementoCatalogoDAO.trovaTuttiGliElementi();
         for (int i = 0; i < 5; i++) {
-            prestitoDAO.aggiungiPrestito(new Prestito(utenti.get(random.nextInt(utenti.size())), elementi.get(random.nextInt(elementi.size())), LocalDate.now()));
+            prestitoDAO.aggiungiPrestito(new Prestito(utenti.get(random.nextInt(utenti.size())), elementi.get(random.nextInt(elementi.size())), generateRandomDate()));
         }
     }
 
@@ -110,6 +121,9 @@ public class Catalogo {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
+
+    // So bene che il reset del database non è previsto e pericoloso, ma essendo questa un'esercitazione didattica ho preferito
+    // inserirlo in modo da rendere più agevole il testing del programma mentre scrivevo codice ed anche un'eventuale correzione
 
     private void addElementChoose() {
         System.out.println("1. Aggiungi manualmente");
