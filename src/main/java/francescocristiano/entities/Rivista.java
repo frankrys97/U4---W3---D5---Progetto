@@ -38,4 +38,11 @@ public class Rivista extends ElementoCatalogo {
     public void setPeriodicità(Periodicità periodicità) {
         this.periodicità = periodicità;
     }
+
+    @Override
+    public String toString() {
+        return "Rivista: " + super.toString() + ", " +
+                "periodicità=" + periodicità +
+                '}';
+    }
 }

@@ -22,7 +22,6 @@ public class PrestitoDAO {
         em.persist(prestito);
         transaction.commit();
         em.close();
-        System.out.println("Prestito aggiunto con successo!");
     }
 
     public List<Prestito> cercaPrestitiScadutiENonRestituiti() {

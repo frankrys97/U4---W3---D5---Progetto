@@ -166,6 +166,7 @@ public class Catalogo {
             String genere = scanner.nextLine();
             elementoCatalogoDAO.aggiungiElementoCatalogo(new Libro(ISBN, titolo, annoPubblicazione, numeroPagine, autore, genere));
             System.out.println("Libro aggiunto con successo");
+            System.out.println();
             ;
         } else if (scelta == 2) {
             Faker faker = new Faker();
@@ -173,14 +174,15 @@ public class Catalogo {
             System.out.println("Inserisci titolo");
             String titolo = scanner.nextLine();
             System.out.println("Inserisci anno di pubblicazione");
-            int annoPubblicazione = scanner.nextInt();
+            int annoPubblicazione = Integer.parseInt(scanner.nextLine());
             scanner.nextLine();
             System.out.println("Inserisci numero di pagine");
-            int numeroPagine = scanner.nextInt();
+            int numeroPagine = Integer.parseInt(scanner.nextLine());
             System.out.println("Inserisci periodicità ( SETTIMANALE, MENSILE, SEMESTRALE ):");
             Periodicità periodicità = Periodicità.valueOf(scanner.nextLine().toUpperCase());
             elementoCatalogoDAO.aggiungiElementoCatalogo(new Rivista(ISBN, titolo, annoPubblicazione, numeroPagine, periodicità));
             System.out.println("Rivista aggiunta con successo");
+            System.out.println();
             ;
         }
     }
@@ -262,10 +264,12 @@ public class Catalogo {
         if (utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera) == null) {
             System.out.println();
             System.out.println("Nessun elemento in prestito");
+            System.out.println();
         } else {
             System.out.println();
             System.out.println("Elementi in prestito: ");
             utenteDAO.cercaElementiAttualmenteInPrestitoByNumeroTessera(numeroTessera).forEach(System.out::println);
+            System.out.println();
         }
     }
 

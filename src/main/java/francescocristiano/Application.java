@@ -10,11 +10,7 @@ public class Application {
     private static final EntityManagerFactory emf = createEntityManagerFactory("u4w3d5");
 
     public static void main(String[] args) {
-
-        EntityManagerFactory emf = createEntityManagerFactory("u4w3d5");
         Catalogo catalogo = new Catalogo(emf);
         catalogo.startApp();
-
-
     }
 }
