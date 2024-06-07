@@ -71,4 +71,14 @@ public class Utente {
     public void setDataDiNascita(Date dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "numeroTessera='" + numeroTessera + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataDiNascita=" + dataDiNascita +
+                '}';
+    }
 }

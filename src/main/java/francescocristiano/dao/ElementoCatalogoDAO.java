@@ -23,7 +23,6 @@ public class ElementoCatalogoDAO {
         em.persist(elemento);
         transaction.commit();
         em.close();
-        System.out.println("Elemento aggiunto con successo!");
     }
 
     public List<ElementoCatalogo> trovaTuttiGliElementi() {

@@ -81,7 +81,7 @@ public class Catalogo {
                         searchAllLoans();
                         break;
                     case 5:
-                        prestitoDAO.cercaPrestitiScadutiENonRestituiti().forEach(System.out::println);
+                        searchAllLoanExpired();
                         break;
                     case 6:
                         System.out.println("Arrivederci!");
@@ -94,6 +94,13 @@ public class Catalogo {
         }
 
 
+    }
+
+    public void searchAllLoanExpired() {
+        System.out.println();
+        System.out.println("Tutti i prestiti scaduti e non ancora restituiti:");
+        prestitoDAO.cercaPrestitiScadutiENonRestituiti().forEach(System.out::println);
+        System.out.println();
     }
 
     public void inizializzaDataBase() {
@@ -186,8 +193,10 @@ public class Catalogo {
         int scelta = Integer.parseInt(scanner.nextLine());
         if (scelta == 1) {
             elementoCatalogoDAO.aggiungiElementoCatalogo(Libro.randomicBook.get());
+            System.out.println("Libro aggiunto con successo");
         } else if (scelta == 2) {
             elementoCatalogoDAO.aggiungiElementoCatalogo(Rivista.randomicMagazine.get());
+            System.out.println("Rivista aggiunto con successo");
         }
     }
 
@@ -213,7 +222,8 @@ public class Catalogo {
                 if (elementoCatalogoDAO.cercaElementoCatalogoByISBN(ISBN) == null) {
                     System.out.println("Elemento non trovato");
                 } else {
-                    System.out.println("Elemento trovato: " + elementoCatalogoDAO.cercaElementoCatalogoByISBN(ISBN));
+                    System.out.println("Elemento trovato: ");
+                    System.out.println(elementoCatalogoDAO.cercaElementoCatalogoByISBN(ISBN));
                 }
                 break;
             case 2:
@@ -224,7 +234,7 @@ public class Catalogo {
                 if (elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione) == null) {
                     System.out.println("Elementi non trovati");
                 } else {
-                    System.out.println("Elementi trovati: " + elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione));
+                    elementoCatalogoDAO.cercaElementiPerAnnoPubblicazione(annoPubblicazione).forEach(System.out::println);
                     System.out.println();
                 }
                 break;
@@ -236,7 +246,7 @@ public class Catalogo {
                 if (libroDAO.cercaLibriPerAutore(autore) == null) {
                     System.out.println("Libri non trovati");
                 } else {
-                    System.out.println("Libri trovati: " + libroDAO.cercaLibriPerAutore(autore));
+                    libroDAO.cercaLibriPerAutore(autore).forEach(System.out::println);
                     System.out.println();
                 }
                 break;

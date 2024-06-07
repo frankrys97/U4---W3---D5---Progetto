@@ -24,7 +24,6 @@ public class UtenteDAO {
         em.persist(utente);
         transaction.commit();
         em.close();
-        System.out.println("Utente aggiunto con successo!");
     }
 
     public Utente cercaUtenteByNumeroTessera(String numeroTessera) {
