@@ -34,8 +34,7 @@ public class Utente {
 
     public String createTessera() {
         Faker faker = new Faker();
-        String numeroTessera = faker.number().digits(7);
-        return numeroTessera;
+        return faker.number().digits(7);
     }
 
     public String getNumeroTessera() {

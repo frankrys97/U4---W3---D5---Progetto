@@ -13,7 +13,7 @@ public abstract class ElementoCatalogo {
     private int annoPubblicazione;
     private int numeroPagine;
 
-    @OneToMany(mappedBy = "elemento_prestato")
+    @OneToMany(mappedBy = "elementoPrestato")
     private List<Prestito> prestiti;
 
     public ElementoCatalogo(String ISBN, String titolo, int annoPubblicazione, int numeroPagine) {

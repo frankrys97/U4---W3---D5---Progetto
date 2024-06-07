@@ -1,9 +1,9 @@
-/*package francescocristiano.exceptions;
+package francescocristiano.exceptions;
 
 public class NotFoundException extends RuntimeException {
 
-    public NotFoundException(long id) {
-        super("Il record con l'id " + id + " non è stato trovato!");
+    public NotFoundException(String ISBN) {
+        super("Il record con l'id " + ISBN + " non è stato trovato!");
     }
 
-}*/
+}

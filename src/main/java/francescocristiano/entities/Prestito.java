@@ -24,7 +24,7 @@ public class Prestito {
 
     private LocalDate dataRestituzionePrevista;
 
-    private LocalDate getDataRestituzioneEffettiva;
+    private LocalDate dataRestituzioneEffettiva;
 
 
     public Prestito() {
@@ -69,13 +69,11 @@ public class Prestito {
         this.dataRestituzionePrevista = dataRestituzionePrevista;
     }
 
-    public LocalDate getGetDataRestituzioneEffettiva() {
-        return getDataRestituzioneEffettiva;
+    public LocalDate getDataRestituzioneEffettiva() {
+        return dataRestituzioneEffettiva;
     }
 
-    public void setGetDataRestituzioneEffettiva(LocalDate getDataRestituzioneEffettiva) {
-        this.getDataRestituzioneEffettiva = getDataRestituzioneEffettiva;
+    public void setDataRestituzioneEffettiva(LocalDate dataRestituzioneEffettiva) {
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
-
-
 }
